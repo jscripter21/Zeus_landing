@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const soundClickFirstSelector = '#sound-first-click';
   const stormImage = document.querySelector('.wheel_spinner_img-storm');
 
+  const soundClick = new Audio();
+  soundClick.src = 'https://sloterra.net/emails-img/lending/slotopass_lending/Sounds/click-zeus.mp3?v=1.0';
+  soundClick.preload = 'auto';
+
+  const soundClickFirst = new Audio();
+  soundClickFirst.src = 'https://sloterra.net/emails-img/lending/slotopass_lending/Sounds/thunder-zeus.mp3?v=1.0';
+  soundClickFirst.preload = 'auto';
+
   let secondClickReady = false;
   let isSoundAllowed = false;
 
@@ -30,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           stormImage.classList.add('blink-animation');
           if (isSoundAllowed) {
-            playSound(soundClickFirstSelector);
+            playSound(soundClickFirstSelector); // Using selector to access element
           }
           setTimeout(() => {
             stormImage.classList.remove('blink-animation');
