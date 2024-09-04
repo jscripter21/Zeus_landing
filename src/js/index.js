@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const acceptButton = document.getElementById('acceptAudio');
   const declineButton = document.getElementById('declineAudio');
   const backgroundMusic = document.querySelector('.background-music');
-  const soundClick = document.getElementById('sound-second-click');
-  const soundClickFirst = document.getElementById('sound-first-click');
+  const soundClickSelector = '#sound-second-click';
+  const soundClickFirstSelector = '#sound-first-click';
   const stormImage = document.querySelector('.wheel_spinner_img-storm');
 
   let secondClickReady = false;
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (button && spinner) {
     button.addEventListener('click', () => {
       if (isSoundAllowed) {
-        playSound(soundClick);
+        playSound(soundClickSelector);
       }
 
       if (!secondClickReady) {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           stormImage.classList.add('blink-animation');
           if (isSoundAllowed) {
-            playSound(soundClickFirst);
+            playSound(soundClickFirstSelector);
           }
           setTimeout(() => {
             stormImage.classList.remove('blink-animation');
@@ -81,10 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
           console.error('Помилка при відтворенні фонової музики:', error);
         }
-        audioModal.style.display = 'none';
-      } else {
-        audioModal.style.display = 'none';
       }
+      audioModal.style.display = 'none';
     });
 
     declineButton.addEventListener('click', () => {
@@ -92,7 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function playSound(audioElement) {
+  function playSound(audioElementSelector) {
+    const audioElement = document.querySelector(audioElementSelector);
     if (audioElement) {
       audioElement.pause();
       audioElement.currentTime = 0;
