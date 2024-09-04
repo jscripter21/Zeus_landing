@@ -1,5 +1,3 @@
-const soundClickFirst = document.getElementById('sound-first-click');
-
 document.addEventListener('DOMContentLoaded', () => {
   const button = document.querySelector('.wheel_btn');
   const spinner = document.querySelector('.wheel_spinner--main');
@@ -62,19 +60,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showPopup() {
-    overlay.style.display = 'flex';
+    if (overlay) {
+      overlay.style.display = 'flex';
+    }
   }
 
   window.closePopup = () => {
-    overlay.style.display = 'none';
+    if (overlay) {
+      overlay.style.display = 'none';
+    }
   };
 
-  if (audioModal) {
+  if (audioModal && acceptButton && declineButton) {
     audioModal.style.display = 'flex';
-    acceptButton.addEventListener('click', () => {
+    acceptButton.addEventListener('click', async () => {
       isSoundAllowed = true;
-      backgroundMusic.play();
-      audioModal.style.display = 'none';
+      if (backgroundMusic) {
+        try {
+          await backgroundMusic.play();
+        } catch (error) {
+          console.error('Помилка при відтворенні фонової музики:', error);
+        }
+        audioModal.style.display = 'none';
+      } else {
+        audioModal.style.display = 'none';
+      }
     });
 
     declineButton.addEventListener('click', () => {
