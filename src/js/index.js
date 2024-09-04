@@ -6,21 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const acceptButton = document.getElementById('acceptAudio');
   const declineButton = document.getElementById('declineAudio');
   const backgroundMusic = document.querySelector('.background-music');
+  const soundClickSelector = '#sound-second-click';
+  const soundClickFirstSelector = '#sound-first-click';
   const stormImage = document.querySelector('.wheel_spinner_img-storm');
 
-  const soundClick = new Audio('https://sloterra.net/emails-img/lending/slotopass_lending/Sounds/click-zeus.mp3?v=1.0');
-  soundClick.preload = 'auto';
-
-  const soundClickFirst = new Audio('https://sloterra.net/emails-img/lending/slotopass_lending/Sounds/thunder-zeus.mp3?v=1.0');
-  soundClickFirst.preload = 'auto';
 
   let secondClickReady = false;
   let isSoundAllowed = false;
 
   if (button && spinner) {
-    button.addEventListener('click', async () => {
+    button.addEventListener('click', () => {
       if (isSoundAllowed) {
-        await playSound(soundClick);
+        playSound(soundClickSelector);
       }
 
       if (!secondClickReady) {
@@ -31,10 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       if (stormImage) {
-        setTimeout(async () => {
+        setTimeout(() => {
           stormImage.classList.add('blink-animation');
           if (isSoundAllowed) {
-            await playSound(soundClickFirst);
+            playSound(soundClickFirstSelector);
           }
           setTimeout(() => {
             stormImage.classList.remove('blink-animation');
@@ -94,13 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  async function playSound(audio) {
-    try {
-      audio.pause();
-      audio.currentTime = 0;
-      await audio.play();
-    } catch (error) {
-      console.error('Помилка при відтворенні звуку:', error);
+  function playSound(audioElementSelector) {
+    const audioElement = document.querySelector(audioElementSelector);
+    if (audioElement) {
+      audioElement.pause();
+      audioElement.currentTime = 0;
+      audioElement.play().catch(error => {
+        console.error('Помилка при відтворенні звуку:', error);
+      });
     }
   }
 });
