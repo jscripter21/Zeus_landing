@@ -1,0 +1,94 @@
+const soundClickFirst = document.getElementById('sound-first-click');
+
+document.addEventListener('DOMContentLoaded', () => {
+  const button = document.querySelector('.wheel_btn');
+  const spinner = document.querySelector('.wheel_spinner--main');
+  const overlay = document.getElementById('overlay');
+  const audioModal = document.getElementById('audioPermissionModal');
+  const acceptButton = document.getElementById('acceptAudio');
+  const declineButton = document.getElementById('declineAudio');
+  const backgroundMusic = document.querySelector('.background-music');
+  const soundClick = document.getElementById('sound-second-click');
+  const soundClickFirst = document.getElementById('sound-first-click');
+  const stormImage = document.querySelector('.wheel_spinner_img-storm');
+
+  let secondClickReady = false;
+  let isSoundAllowed = false;
+
+  if (button && spinner) {
+    button.addEventListener('click', () => {
+      if (isSoundAllowed) {
+        playSound(soundClick);
+      }
+
+      if (!secondClickReady) {
+        startSpin();
+      } else {
+        finishSpin();
+        setTimeout(showPopup, 5500);
+      }
+
+      if (stormImage) {
+        setTimeout(() => {
+          stormImage.classList.add('blink-animation');
+          if (isSoundAllowed) {
+            playSound(soundClickFirst);
+          }
+          setTimeout(() => {
+            stormImage.classList.remove('blink-animation');
+          }, 1500);
+        }, 5000);
+      }
+    });
+  } else {
+    console.error('Кнопка або спіннер не знайдені!');
+  }
+
+  function startSpin() {
+    button.classList.remove('spin');
+    spinner.classList.add('wheel_spinner_animated_again');
+    spinner.classList.remove('wheel_spinner_animated');
+    setTimeout(() => {
+      secondClickReady = true;
+      button.classList.add('spin');
+    }, 5000);
+  }
+
+  function finishSpin() {
+    spinner.classList.remove('wheel_spinner_animated_again');
+    spinner.classList.add('wheel_spinner_animated_1');
+    button.classList.remove('spin');
+    secondClickReady = false;
+  }
+
+  function showPopup() {
+    overlay.style.display = 'flex';
+  }
+
+  window.closePopup = () => {
+    overlay.style.display = 'none';
+  };
+
+  if (audioModal) {
+    audioModal.style.display = 'flex';
+    acceptButton.addEventListener('click', () => {
+      isSoundAllowed = true;
+      backgroundMusic.play();
+      audioModal.style.display = 'none';
+    });
+
+    declineButton.addEventListener('click', () => {
+      audioModal.style.display = 'none';
+    });
+  }
+
+  function playSound(audioElement) {
+    if (audioElement) {
+      audioElement.pause();
+      audioElement.currentTime = 0;
+      audioElement.play().catch(error => {
+        console.error('Помилка при відтворенні звуку:', error);
+      });
+    }
+  }
+});

@@ -1,0 +1,123 @@
+.footer {
+	display: block;
+	align-items: center;
+	justify-content: center;
+
+	z-index: 111111;
+
+	@media (max-height: 1024px) {
+		padding-top: 80px;
+	}
+}
+
+.footer__icons {
+	margin: 0 auto;
+	max-width: 1000px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	text-align: center;
+}
+
+.footer__icons-item img {
+	width: 130px;
+	// margin-bottom: 6px;
+	z-index: 999;
+	@media (max-width: 720px) {
+		width: 110px;
+	}
+}
+
+.footer_copyright {
+	color: #fff;
+	max-width: 780px;
+	padding: 20px;
+	font-family: Montserrat;
+	font-size: 10px;
+	font-style: normal;
+	font-weight: 300;
+	// padding-bottom: 0px;
+	z-index: 999;
+
+	margin: 0 auto;
+}
+
+.shadow_bottom {
+	position: absolute;
+	bottom: 0;
+
+	width: 100%;
+	z-index: 1;
+	height: 15vh;
+}
+
+.footer-smoke {
+	position: absolute;
+	bottom: 0;
+
+	width: 100%;
+	z-index: -1;
+}
+
+@keyframes floatImgBottom {
+	0% {
+		transform: translateX(0);
+	}
+
+	50% {
+		transform: translateX(-14px);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+.background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: none;
+	overflow: hidden;
+}
+
+.background_image-smoke-cloud1,
+.background_image-smoke-cloud2,
+.background_image-smoke-cloud3 {
+	opacity: 0.7;
+	position: absolute;
+	max-width: 90%;
+	will-change: transform;
+	overflow: hidden;
+}
+.background_image-smoke-cloud1 {
+	animation: wave 8s 0.1s infinite linear;
+	right: 40%;
+	bottom: 0;
+}
+.background_image-smoke-cloud2 {
+	animation: wave 9s 0.1s infinite linear;
+	left: -14%;
+	bottom: -6%;
+}
+.background_image-smoke-cloud3 {
+	animation: wave 10s 0.1s infinite linear;
+	right: -4%;
+	bottom: -17%;
+}
+@keyframes wave {
+	0% {
+		transform: rotateZ(0deg) translate3d(0, 10%, 15px) rotateZ(0deg);
+	}
+	100% {
+		transform: rotateZ(360deg) translate3d(0, 10%, 15px) rotateZ(-360deg);
+	}
+}

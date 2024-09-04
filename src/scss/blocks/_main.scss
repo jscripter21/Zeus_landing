@@ -1,0 +1,321 @@
+// Logo-------
+.logo {
+	margin: 0 auto;
+	padding-top: 24px;
+
+	width: 220px;
+
+	position: relative;
+	z-index: 99991;
+}
+
+// Header-text-------
+.header-text {
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+
+	z-index: 5;
+	@media only screen and (max-width: 950px) {
+		margin-bottom: 30px;
+	}
+	@media only screen and (max-width: 480px) {
+		display: none;
+	}
+}
+// Header-text-mob-------
+.header-text-mob {
+	max-width: 300px;
+	display: none;
+	@media only screen and (max-width: 480px) {
+		display: block;
+	}
+}
+// Zeus-------
+.zeus {
+	position: absolute;
+	right: -60%;
+	top: -10%;
+	width: 100%;
+	max-width: 520px;
+	z-index: 10;
+
+	animation: floatImg 3s ease-in-out infinite;
+	z-index: 1;
+
+	@media only screen and (max-width: 1500px) {
+		width: 420px;
+		right: -45%;
+	}
+	@media only screen and (max-width: 950px) {
+		width: 350px;
+		right: -40%;
+	}
+	@media only screen and (max-width: 650px) {
+		width: 300px;
+		right: -35%;
+	}
+	@media only screen and (max-width: 500px) {
+		width: 250px;
+		right: -35%;
+	}
+}
+
+@keyframes floatImg {
+	0% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(14px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+// Wheel-------
+.wheel_wrap {
+	display: flex;
+	justify-content: center;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.wheel_wrap:after {
+	background: url('../img/spin/arrow.png') 0 0 no-repeat;
+	width: 95px;
+	height: 60px;
+	position: absolute;
+	top: -20px;
+	left: calc(50% - 47.5px);
+	background-size: contain;
+	content: '';
+	animation: floatImgArrow 1.5s ease-in-out infinite;
+	z-index: 9999;
+
+	@media only screen and (max-width: 950px) {
+		width: 70px;
+		left: calc(50% - 35px);
+	}
+
+	@media only screen and (max-width: 500px) {
+		width: 50px;
+		left: calc(50% - 25px);
+		top: -10px;
+	}
+}
+
+@keyframes floatImgArrow {
+	0% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(3px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+.wheel_btn {
+	position: absolute;
+
+	top: 50%;
+	left: 50%;
+
+	transform: translate(-50%, -50%);
+	width: 212px;
+	height: 205px;
+	cursor: pointer;
+	z-index: 10014;
+
+	filter: drop-shadow(0px 0px 20px #270700);
+
+	animation: 1.5s cta ease-in-out infinite;
+	@media only screen and (max-width: 1500px) {
+		width: 170px;
+		top: 48%;
+	}
+	@media only screen and (max-width: 950px) {
+		width: 130px;
+		top: 43%;
+	}
+	@media only screen and (max-width: 500px) {
+		width: 110px;
+		top: 38%;
+	}
+	@media only screen and (max-width: 425px) {
+		width: 90px;
+		top: 34%;
+	}
+}
+
+.wheel_btn.disabled {
+	cursor: not-allowed;
+	transform: translate(-50%, -50%) matrix(1, 0, 0, -1, 0, 0) scale(1) !important;
+	animation-play-state: paused;
+
+	.wheel_btn__inner {
+		cursor: not-allowed;
+	}
+}
+
+.wheel_btn__inner {
+	transform: matrix(1, 0, 0, -1, 0, 0);
+
+	outline: none;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+.wheel_spinner_img-storm {
+	position: absolute;
+	top: 27%;
+	left: 52%;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+	width: 100%;
+	max-width: 350px;
+	opacity: 0;
+	transition: opacity 0.2 s ease-in-out;
+	@media only screen and (max-width: 700px) {
+		max-width: 250px;
+	}
+	@media only screen and (max-width: 500px) {
+		max-width: 200px;
+	}
+}
+
+.blink-animation {
+	animation: blink 0.2s infinite;
+}
+
+@keyframes blink {
+	0% {
+		opacity: 0;
+	}
+	25% {
+		opacity: 0.25;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	75% {
+		opacity: 0.75;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.wheel_wrap__wheels {
+	position: relative;
+	margin: auto;
+}
+
+.wheel_spinner--main {
+	z-index: 20;
+	width: 700px;
+
+	img {
+		width: 100%;
+	}
+
+	@media only screen and (max-width: 1500px) {
+		width: 600px;
+	}
+	@media only screen and (max-width: 950px) {
+		width: 500px;
+	}
+	@media only screen and (max-width: 650px) {
+		width: 450px;
+	}
+	@media only screen and (max-width: 500px) {
+		width: 400px;
+	}
+	@media only screen and (max-width: 425px) {
+		width: 350px;
+	}
+}
+
+.wheel_spinner {
+	transition: all 0.5s !important;
+
+	position: relative;
+}
+
+//big wheel
+.wheel_spinner.wheel_spinner_animated {
+	animation: 3s spinner ease-in-out infinite;
+}
+
+.wheel_spinner.wheel_spinner_animated_again {
+	animation: 5s spinToTryAgain ease-in-out forwards;
+}
+
+.wheel_spinner.wheel_spinner_animated_1 {
+	animation: 5s spinTo1 ease-in-out forwards;
+}
+
+@keyframes cta {
+	0% {
+		transform: translate(-50%, -50%) matrix(1, 0, 0, -1, 0, 0) scale(1);
+	}
+
+	50% {
+		transform: translate(-50%, -50%) matrix(1, 0, 0, -1, 0, 0) scale(1.1);
+	}
+
+	100% {
+		transform: translate(-50%, -50%) matrix(1, 0, 0, -1, 0, 0) scale(1);
+	}
+}
+
+@keyframes spinner {
+	0% {
+		transform: rotate(-60deg);
+	}
+
+	50% {
+		transform: rotate(-70deg);
+	}
+
+	100% {
+		transform: rotate(-60deg);
+	}
+}
+
+@keyframes spinToTryAgain {
+	0% {
+		transform: rotate(-60deg);
+		animation-timing-function: ease-out;
+	}
+	70% {
+		transform: rotate(795deg);
+		animation-timing-function: ease-out;
+	}
+	100% {
+		transform: rotate(810deg);
+		animation-timing-function: ease-out;
+	}
+}
+
+@keyframes spinTo1 {
+	0% {
+		transform: rotate(770deg);
+		animation-timing-function: ease-out;
+	}
+	70% {
+		transform: rotate(1650deg);
+		animation-timing-function: ease-out;
+	}
+
+	100% {
+		transform: rotate(1665deg);
+		animation-timing-function: ease-out;
+	}
+}
