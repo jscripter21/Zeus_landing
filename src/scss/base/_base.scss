@@ -100,14 +100,14 @@ body {
 	flex-direction: column;
 	margin-top: -200px;
 	@media only screen and (max-width: 500px) {
-		margin-top: -250px;
+		margin-top: -320px;
 	}
 }
 .header-popap {
 	padding: 0 5px;
 	@media only screen and (max-width: 480px) {
 		display: none;
-		margin-top: -250px;
+		margin-top: -300px;
 	}
 }
 
@@ -126,10 +126,10 @@ body {
 		max-width: 665px;
 	}
 	@media only screen and (max-width: 550px) {
-		max-width: 580px;
+		max-width: 540px;
 	}
 	@media only screen and (max-width: 395px) {
-		max-width: 540px;
+		max-width: 500px;
 	}
 }
 
